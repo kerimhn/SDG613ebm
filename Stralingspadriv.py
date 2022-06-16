@@ -24,7 +24,9 @@ df = pd.read_csv('Data/historical_IPCC6.csv',
 df['total'] = df.sum(axis=1)
 
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
-app = Dash(__name__, external_stylesheets=[dbc.themes.FLATLY],
+app = Dash(__name__,
+           server=False,
+           external_stylesheets=[dbc.themes.FLATLY],
            meta_tags=[{'name': 'viewport',  # skalering for mobil
                        'content': 'width=device-width, initial-scale=1.0'}])
 
@@ -76,51 +78,6 @@ app.layout = dbc.Container([
                       mathjax=True,
                       )], width=8)
     ]),
-    #     dbc.Row([
-    #         dbc.Card([
-    #         dbc.CardBody([
-    #             html.H4("Velg perioder for gjennomsnitt:", className="card-title"),
-    #             dbc.Row([dbc.Col(
-    #                  dbc.Label ("Første periode"),width=2),
-
-    #             dbc.Col(dcc.RangeSlider(1750, 2011,
-    #                         marks={
-    #                                 1750: '1750',
-    #                                 1800: '1800',
-    #                                 1850: '1850',
-    #                                 1900: '1900',
-    #                                 1950: '1950',
-    #                                 2000: '2000'
-    #                                 },
-    #                         value=[1850, 1800],
-    #                        id='slide1')
-    #                  ,)
-    #     ]),
-    #                           # ,width=3,align="end"),
-    #        dbc.Row([
-    #             dbc.Col(
-    #                  dbc.Label ("Andre periode"),width=2),
-    #              dbc.Col(
-    #         dcc.RangeSlider(1750, 2011,
-    #                         marks={
-    #                                 1750: '1750',
-    #                                 1800: '1800',
-    #                                 1850: '1850',
-    #                                 1900: '1900',
-    #                                 1950: '1950',
-    #                                 2000: '2000'
-    #                                 },
-    #                         value=[1900, 1950],
-    #                        id='slide2')
-    #               ,)
-    #                  ])
-    #             ])
-    #         ],color="primary", inverse=True)
-    #     ]),
-    # dbc.Row([
-    # dbc.Col([
-    #     dcc.Graph(id='mean-graph', figure={},mathjax=True)#, className='four columns')#,config={'staticPlot': True})
-    # ],width =4),
 
     dbc.Col([
         dcc.Graph(id='total-graph', figure={},
@@ -200,32 +157,6 @@ def update_total(paadriv):
     fig3.update_xaxes(title='')
     return fig3
 
-
-# @app.callback(
-#     Output(component_id='mean-graph', component_property='figure'),
-#     [Input(component_id='slide1', component_property='value'),
-#     Input(component_id='slide2', component_property='value')]
-# )
-# def upadete_gjennomsnitt(periode1,periode2):
-#     dff1_mean = df.loc[periode1[0]:periode1[1]].mean()
-#     dff2_mean = df.loc[periode2[0]:periode2[1]].mean()
-#     tit1=' '.join([str(periode1[0]),'-',str(periode1[1])])
-#     tit2=' '.join([str(periode2[0]),'-',str(periode2[1])])
-#     plotdata = pd.DataFrame({
-#     tit1:dff1_mean,
-#     tit2:dff2_mean,
-#     }, )
-#     fig4=px.bar(plotdata,barmode='group',template=Template)
-#     fig4.update_yaxes(title=dict(text=r'$W / m^2$'))#,showgrid=True, gridwidth=1, gridcolor='white')
-#     fig4.update_layout(legend=dict(
-#         orientation="h",
-#         #yanchor="bottom",
-#         y=1.1,
-#         xanchor="center",
-#         x=0.5,
-#         title=""
-#     ))
-#     return fig4
 
 if __name__ == '__main__':
     app.run_server(debug=True, port=81)

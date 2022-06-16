@@ -13,22 +13,11 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-template i plotly grafene
 
-# konstanter
-h = 6.62607015e-34  # Js - plancskonstant
-c = 299792458  # m/s - Lysfarten i vakuum
-k = 1.380649e-23  # J/K - Boltzmannkonstanten
-
-# Bølgelender mellom 110nm til 100 mikrometer, jevnt fordelt på en logaritmiskskala.
-lamda = np.logspace(np.log10(1.1e-7), np.log10(5e-5), num=1000, endpoint=True)
-
-
-def u_planck(lamda, T):
-    # Regner utstrålingstettheten ved hver bølgelengde for en gitt temperatur
-    return (8 * np.pi * h * c) / (lamda ** 5) * (1 / (np.exp((h * c) / (lamda * k * T)) - 1))
-
 
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
-app = Dash(__name__, external_stylesheets=[dbc.themes.FLATLY],
+app = Dash(__name__,
+           server=False,
+           external_stylesheets=[dbc.themes.FLATLY],
            meta_tags=[{'name': 'viewport',  # skalering for mobil
                        'content': 'width=device-width, initial-scale=1.0'}])
 
@@ -85,6 +74,19 @@ app.layout = dbc.Container([
 
 
 # ---------------------------------------------
+
+# konstanter
+h = 6.62607015e-34  # Js - plancskonstant
+c = 299792458  # m/s - Lysfarten i vakuum
+k = 1.380649e-23  # J/K - Boltzmannkonstanten
+
+# Bølgelender mellom 110nm til 100 mikrometer, jevnt fordelt på en logaritmiskskala.
+lamda = np.logspace(np.log10(1.1e-7), np.log10(5e-5), num=1000, endpoint=True)
+
+
+def u_planck(lamda, T):
+    # Regner utstrålingstettheten ved hver bølgelengde for en gitt temperatur
+    return (8 * np.pi * h * c) / (lamda ** 5) * (1 / (np.exp((h * c) / (lamda * k * T)) - 1))
 
 @app.callback(
     Output(component_id='my-graph', component_property='figure'),

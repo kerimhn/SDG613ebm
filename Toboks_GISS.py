@@ -31,7 +31,9 @@ lambda_sum = -1.3  # [Wm-2K-1] - Parameter for tilbakekobling,sum av gjennomsnit
 gamma = -0.69  # [Wm-2K-1] - effektivitet for opptak av varme i dyphav fra Dufresne and Bony (2008)
 
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
-app = Dash(__name__, external_stylesheets=[dbc.themes.FLATLY],
+app = Dash(__name__,
+           server=False,
+           external_stylesheets=[dbc.themes.FLATLY],
            meta_tags=[{'name': 'viewport',  # skalering for mobil
                        'content': 'width=device-width, initial-scale=1.0'}])
 
@@ -144,21 +146,21 @@ def tegn_sum_graf(driv):
     fig.add_trace(go.Scatter(x=temp.index, y=temp['Temp.endring overflate'],
                              fill=None,
                              mode='lines',
-                             line_color='black',
+                             line=dict(color='black'),
                              name='Toboks'
                              ))
 
     fig.add_trace(go.Scatter(x=data.index, y=data['No_Smoothing'],
                              fill=None,
                              mode='lines',
-                             line_color='red',
+                             line=dict(color='red'),
                              name='GISS',
                              ))
 
     fig.add_trace(go.Scatter(x=data.index, y=data['Max'],
                              fill=None,
                              mode='lines',
-                             line_color='gray',
+                             line=dict(color='gray'),
                              showlegend=False,
                              name='Max'
                              ))
@@ -166,7 +168,7 @@ def tegn_sum_graf(driv):
     fig.add_trace(go.Scatter(x=data.index, y=data['Min'],
                              fill='tonexty',
                              mode='lines',
-                             line_color='gray',
+                             line=dict(color='gray'),
                              name='min',
                              showlegend=False,
                              ))

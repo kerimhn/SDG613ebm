@@ -21,7 +21,9 @@ Albedo_med = pd.read_csv('Data/Albedo_med_filter.csv', sep=';', decimal=',', ind
 Albedo_uten = pd.read_csv('Data/Albedo_uten_filter.csv', sep=';', decimal=',', index_col=0)
 
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
-app = Dash(__name__, external_stylesheets=[dbc.themes.FLATLY],
+app = Dash(__name__,
+           server=False,
+           external_stylesheets=[dbc.themes.FLATLY],
            meta_tags=[{'name': 'viewport',  # skalering for mobil
                        'content': 'width=device-width, initial-scale=1.0'}])
 

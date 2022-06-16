@@ -18,7 +18,9 @@ I_sol = 1361  #
 tyk = 50  # 100% - piltykkelse
 
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.FLATLY],
+app = dash.Dash(__name__,
+                server=False,
+                external_stylesheets=[dbc.themes.FLATLY],
                 meta_tags=[{'name': 'viewport',  # skalering for mobil
                             'content': 'width=device-width, initial-scale=0.9'}]
                 )

@@ -23,7 +23,9 @@ df = pd.read_csv('Data/historical_IPCC6.csv',
 df['total'] = df.sum(axis=1)
 
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
-app = Dash(__name__, external_stylesheets=[dbc.themes.FLATLY],
+app = Dash(__name__,
+           serve=False,
+           external_stylesheets=[dbc.themes.FLATLY],
            meta_tags=[{'name': 'viewport',  # skalering for mobil
                        'content': 'width=device-width, initial-scale=1.0'}])
 load_figure_template(Template)
@@ -83,7 +85,7 @@ app.layout = dbc.Container([
                       mathjax=True,
                       )], width=8)
     ])
-],fluid='lg')
+], fluid='lg')
 
 
 # _________________________________________________________________________________________________________
@@ -130,7 +132,7 @@ def calculate_temp_anomalies(radiative_forcing, lambda_sum, gamma):
     [Input(component_id='my_checklist', component_property='value'),
      Input(component_id='check_Sum', component_property='value')],
 )
-#---------------------------------------------------------------------
+# ---------------------------------------------------------------------
 # Callbacks
 #
 def update_graph(paadriv, check_Sum):

@@ -16,7 +16,7 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-template i plotly grafene
 
-df = pd.read_csv('Data/historical_IPCC6.csv', index_col=0, sep=',', encoding="utf-8")
+df = pd.read_csv('data/historical_IPCC6.csv', index_col=0, sep=',', encoding="utf-8")
 
 df['total'] = df.sum(axis=1)
 

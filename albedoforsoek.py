@@ -17,8 +17,8 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-template i plotly grafene
 
-Albedo_med = pd.read_csv('Data/Albedo_med_filter.csv', sep=';', decimal=',', index_col=0)
-Albedo_uten = pd.read_csv('Data/Albedo_uten_filter.csv', sep=';', decimal=',', index_col=0)
+Albedo_med = pd.read_csv('data/Albedo_med_filter.csv', sep=';', decimal=',', index_col=0)
+Albedo_uten = pd.read_csv('data/Albedo_uten_filter.csv', sep=';', decimal=',', index_col=0)
 
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
 app = Dash(__name__,

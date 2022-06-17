@@ -11,6 +11,7 @@
 
 import pandas as pd
 import plotly.express as px
+import os.path
 
 from dash import Dash, dcc, html
 from dash.dependencies import Input, Output
@@ -18,8 +19,8 @@ import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-template i plotly grafene
 
 # df=pd.read_csv('historical.csv',index_col = 0,sep=',',encoding = "utf-8")
-df = pd.read_csv('data/historical_IPCC6.csv',
-                 index_col=0, sep=',', encoding="utf-8")
+df = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", 'historical_IPCC6.csv'))
+
 
 df['total'] = df.sum(axis=1)
 

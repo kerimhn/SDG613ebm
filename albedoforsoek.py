@@ -12,13 +12,14 @@
 
 import pandas as pd
 import plotly.graph_objects as go
+import os.path
 from dash import Dash, dcc, html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-template i plotly grafene
 
-Albedo_med = pd.read_csv('data/Albedo_med_filter.csv', sep=';', decimal=',', index_col=0)
-Albedo_uten = pd.read_csv('data/Albedo_uten_filter.csv', sep=';', decimal=',', index_col=0)
+Albedo_med = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data','Albedo_med_filter.csv'), sep=';', decimal=',', index_col=0)
+Albedo_uten = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data','Albedo_uten_filter.csv'), sep=';', decimal=',', index_col=0)
 
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
 app = Dash(__name__,

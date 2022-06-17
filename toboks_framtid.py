@@ -12,14 +12,14 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
-
+import os.path
 from dash import Dash, dcc, html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-template i plotly grafene
 
 
-df = pd.read_csv('data/futureForcing_IPCC6.csv',
+df = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)),'data','futureForcing_IPCC6.csv'),
                  index_col=0, sep=',', encoding="utf-8")
 
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver

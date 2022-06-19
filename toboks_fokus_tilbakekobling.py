@@ -24,6 +24,7 @@ df['total'] = df.sum(axis=1)
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
 app = Dash(__name__,
            server=False,
+           title='Tilbakekoblingsmekanismer',
            external_stylesheets=[dbc.themes.FLATLY],
            meta_tags=[{'name': 'viewport',  # skalering for mobil
                        'content': 'width=device-width, initial-scale=1.0'}])
@@ -33,7 +34,7 @@ load_figure_template(Template)
 app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
-            html.H1('Tilbakekoblingsmekanismer',
+            html.H1(app.title,
                     className='text-center text-primary mb-4')
         ], width=12)
     ], justify='center'),

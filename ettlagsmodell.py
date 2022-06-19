@@ -21,6 +21,7 @@ Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
 
 app = Dash(__name__,
            server=False,
+           title='Ettlagsmodell av atmosfæren',
            external_stylesheets=[dbc.themes.FLATLY],
            meta_tags=[{'name': 'viewport',  # skalering for mobil
                        'content': 'width=device-width, initial-scale=0.9'}]
@@ -32,7 +33,7 @@ load_figure_template(Template)
 app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
-            html.H1('Ettlagsmodell av atmosfæren',  # style={'font-size': '2.5vw'},
+            html.H1(app.title,  # style={'font-size': '2.5vw'},
                     className='text-center text-primary mb-4')
         ], width=12)
     ], justify='center'),

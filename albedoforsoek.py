@@ -24,6 +24,7 @@ Albedo_uten = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
 app = Dash(__name__,
            server=False,
+           title='Albedoeksperiment',
            external_stylesheets=[dbc.themes.FLATLY],
            meta_tags=[{'name': 'viewport',  # skalering for mobil
                        'content': 'width=device-width, initial-scale=1.0'}])
@@ -33,7 +34,7 @@ load_figure_template(Template)
 app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
-            html.H1('Albedoeksperiment',
+            html.H1(app.title,
                     className='text-center text-primary mb-4')
         ], width=12)
     ], justify='center'),

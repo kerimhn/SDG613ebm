@@ -42,8 +42,7 @@ app.layout = dbc.Container([
         dbc.Card([
             dbc.CardBody([
                 html.H4(
-                    "Balanser energien som stråler ut og inn både på bakkenivå og i atmosfæren ved å regulere de to "
-                    "temperaturene:",
+                    "Balanser energien som stråler ut og inn:",
                     className="card-title"),  # style={'font-size': '1.2vw'}),
                 dbc.Row([dbc.Col(
                     dbc.Label("Temperatur på bakken"), width=2),  # style={'font-size': '.95vw'}),
@@ -81,11 +80,11 @@ app.layout = dbc.Container([
     dbc.Row([
         dbc.Card([
             dbc.CardBody([
-                html.H4(
-                    "Reguler andelen av solyset som reflekteres (albedo) og hvor effektiv atmosfæren absorberer og "
-                    "sender ut langbølget stråling (emissivitet)",
-                    # style={'font-size': '1.2vw'},
-                    className="card-title"),
+#                html.H4(
+#                    "Reguler andelen av solyset som reflekteres (albedo) og hvor effektiv atmosfæren absorberer og "
+#                    "sender ut langbølget stråling (emissivitet)",
+#                    # style={'font-size': '1.2vw'},
+#                    className="card-title"),
                 dbc.Row([dbc.Col(
                     dbc.Label("Albedo"), width=2),  # style={'font-size': '.95vw'}),
 
@@ -162,7 +161,11 @@ def piler(temp, temp2, alfa, epsilon):
                            arrowwidth=skala3, arrowhead=4, startarrowhead=4, startarrowsize=0.3, arrowsize=0.3,
                            text="Atmosfæren<br>sender ut<br>varmestråling", arrowcolor="FireBrick", )
 
-    fig.update_layout(xaxis_range=[0.4, 1.5], yaxis_range=[0, 2], margin_l=0, margin_r=0)
+    fig.update_layout(xaxis_range=[0.4, 1.5],
+                      yaxis_range=[0, 2],
+                      margin_l=0,
+                      margin_r=0,
+                      height=400)
 
     fig.add_hrect(y0=0, y1=0.2, fillcolor="DarkOliveGreen", opacity=0.5, layer="below", line_width=0)
     fig.add_hrect(y0=1, y1=1.4, fillcolor="lightblue", opacity=0.5, layer="above", line_width=0)
@@ -273,8 +276,11 @@ def soyle(temp, temp2, alfa, epsilon):
     fig2.add_hline(y=0)
     fig2.update_yaxes(title=dict(text=r'$W / m^2$'))
     fig2.update_xaxes(title=dict(text=r''))
-    fig2.update_layout(title='', xaxis_range=[-0.5, 10], yaxis_range=[1.2 * min(grenser), 1.15 * max(grenser)],
+    fig2.update_layout(title='',
+                       xaxis_range=[-0.5, 10],
+                       yaxis_range=[1.2 * min(grenser), 1.15 * max(grenser)],
                        legend=dict(orientation="h", y=1.15, xanchor="center", x=0.5, title=""),
+                       height=400,
                        )
     fig2.update_xaxes(showgrid=False, title=None, showticklabels=False)
 

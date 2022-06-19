@@ -178,7 +178,7 @@ def tegn_sum_graf(driv):
     fig.update_yaxes(title=dict(text=r'$\Delta T [^{\circ} C]$'))
 
     fig.update_layout(yaxis_range=[-1.3, 1.6],
-                      height=500)
+                      height=400)
     #     title="Plot Title",
     #     xaxis_title="X Axis Title",
     #     yaxis_title="Y Axis Title",

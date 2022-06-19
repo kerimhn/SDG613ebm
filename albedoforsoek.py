@@ -12,17 +12,19 @@
 
 import pandas as pd
 import plotly.graph_objects as go
+import os.path
 from dash import Dash, dcc, html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-template i plotly grafene
 
-Albedo_med = pd.read_csv('data/Albedo_med_filter.csv', sep=';', decimal=',', index_col=0)
-Albedo_uten = pd.read_csv('data/Albedo_uten_filter.csv', sep=';', decimal=',', index_col=0)
+Albedo_med = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data','Albedo_med_filter.csv'), sep=';', decimal=',', index_col=0)
+Albedo_uten = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data','Albedo_uten_filter.csv'), sep=';', decimal=',', index_col=0)
 
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
 app = Dash(__name__,
            server=False,
+           title='Albedoeksperiment',
            external_stylesheets=[dbc.themes.FLATLY],
            meta_tags=[{'name': 'viewport',  # skalering for mobil
                        'content': 'width=device-width, initial-scale=1.0'}])
@@ -32,7 +34,7 @@ load_figure_template(Template)
 app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
-            html.H1('Albedoeksperiment',
+            html.H1(app.title,
                     className='text-center text-primary mb-4')
         ], width=12)
     ], justify='center'),

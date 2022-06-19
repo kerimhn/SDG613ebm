@@ -12,18 +12,19 @@
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
+import os.path
 from dash import Dash, dcc, html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-template i plotly grafene
 
 # df=pd.read_csv('historical.csv',index_col = 0,sep=',',encoding = "utf-8")
-df = pd.read_csv('data/historical_IPCC6.csv',
+df = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)),'data','historical_IPCC6.csv'),
                  index_col=0, sep=',', encoding="utf-8")
 
 # df['total']=df.sum(axis=1)
-data = pd.read_csv('data/graph.csv', skiprows=1, index_col=0)
-error = pd.read_csv('data/totalCI_ERA.csv', index_col=0)
+data =  pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)),'data','graph.csv'), skiprows=1, index_col=0)
+error = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)),'data','totalCI_ERA.csv'), index_col=0)
 data['Max'] = data['No_Smoothing'] + error['ci95']
 data['Min'] = data['No_Smoothing'] - error['ci95']
 
@@ -33,6 +34,7 @@ gamma = -0.69  # [Wm-2K-1] - effektivitet for opptak av varme i dyphav fra Dufre
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
 app = Dash(__name__,
            server=False,
+           title='Målt + modelert temperaturanomali',
            external_stylesheets=[dbc.themes.FLATLY],
            meta_tags=[{'name': 'viewport',  # skalering for mobil
                        'content': 'width=device-width, initial-scale=1.0'}])
@@ -42,7 +44,7 @@ load_figure_template(Template)
 app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
-            html.H1('Målt + modelert temperaturanomali',
+            html.H1(app.title,
                     className='text-center text-primary mb-4')
         ], width=12)
     ], justify='center'),

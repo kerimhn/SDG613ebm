@@ -11,18 +11,20 @@
 import numpy as np
 import plotly.express as px
 import pandas as pd
+import os.path
 from dash import Dash, dcc, html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-template i plotly grafene
 
-df = pd.read_csv('data/historical_IPCC6.csv', index_col=0, sep=',', encoding="utf-8")
+df = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data",'historical_IPCC6.csv'), index_col=0, sep=',', encoding="utf-8")
 
 df['total'] = df.sum(axis=1)
 
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
 app = Dash(__name__,
            server=False,
+           title='Tilbakekoblingsmekanismer',
            external_stylesheets=[dbc.themes.FLATLY],
            meta_tags=[{'name': 'viewport',  # skalering for mobil
                        'content': 'width=device-width, initial-scale=1.0'}])
@@ -32,7 +34,7 @@ load_figure_template(Template)
 app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
-            html.H1('Tilbakekoblingsmekanismer',
+            html.H1(app.title,
                     className='text-center text-primary mb-4')
         ], width=12)
     ], justify='center'),

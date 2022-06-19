@@ -188,7 +188,7 @@ def update_graph(paadriv, periode):
     ),
         xaxis_range=[periode[0], periode[1]],
         yaxis_range=[ymin * 1.05, ymax * 1.05],
-        height=500
+        height=400
     )
 
     return fig
@@ -291,7 +291,7 @@ def update_temperatur(paadriv, check, periode):
     ),
         xaxis_range=[periode[0], periode[1]],
         yaxis_range=[ymin * 1.05, ymax * 1.05],
-        height=500
+        height=400
     )
 
     return fig

@@ -42,10 +42,10 @@ app.layout = dbc.Container([
         dbc.Card([
             dbc.CardBody([
                 html.H4(
-                    "Balanser energien som stråler ut og inn:",
+                    "Balanser utstrålinstetthet og innstråltingstetthet:",
                     className="card-title"),  # style={'font-size': '1.2vw'}),
                 dbc.Row([dbc.Col(
-                    dbc.Label("Temperatur på bakken"), width=2),  # style={'font-size': '.95vw'}),
+                    dbc.Label("Temperatur på bakken:"), width=3),  # style={'font-size': '.95vw'}),
 
                     dbc.Col(dcc.Slider(-50, 50, .01, value=-30, marks=None, id='temp_slide',
                                        tooltip={"placement": "bottom", "always_visible": True}),
@@ -54,7 +54,7 @@ app.layout = dbc.Container([
                 # ,width=3,align="end"),
                 dbc.Row([
                     dbc.Col(
-                        dbc.Label("Temperatur i atmosfæren:"), width=2),  # style={'font-size': '.95vw'}),
+                        dbc.Label("Temperatur i atmosfæren:"), width=3),  # style={'font-size': '.95vw'}),
                     dbc.Col(dcc.Slider(-100, 10, .01, value=-50, marks=None, id='temp2_slide',
                                        tooltip={"placement": "bottom", "always_visible": True}),
                             )
@@ -218,7 +218,7 @@ def soyle(temp, temp2, alfa, epsilon):
     fig2.add_annotation(
         text="Energibalanse<br>jord",
         xref="paper", yref="paper",
-        x=0.11, y=1,
+        x=0.11, y=1.05,
         showarrow=False,
         font=dict(size=16),
     )
@@ -226,7 +226,7 @@ def soyle(temp, temp2, alfa, epsilon):
     fig2.add_annotation(
         text="Energibalanse<br>atmosfære",
         xref="paper", yref="paper",
-        x=0.91, y=1,
+        x=0.91, y=1.05,
         showarrow=False, textangle=0,
         font=dict(size=16),
     )

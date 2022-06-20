@@ -117,7 +117,7 @@ def plot(Temp, valg):
     fig.update_layout(
         xaxis_title='Bølgelengde (m)',
         yaxis_title='$W\cdot m^{-2}\cdot nm^{-1}$',
-        height=450
+        height=400
     )
     fig.update_xaxes(showline=True, linewidth=2, linecolor='black', mirror=True)
     fig.update_yaxes(showline=True, linewidth=2, linecolor='black', mirror=True)

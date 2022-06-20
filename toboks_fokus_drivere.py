@@ -47,7 +47,7 @@ app.layout = dbc.Container([
                     dbc.Row([
                         dbc.Col([
                             dbc.Label(['Velg strålingspådriv:']),
-                        ], xl=2, lg=4, md=12),
+                        ], xl=2, lg=3, md=12),
                         dbc.Col([
                             dbc.Checklist(
                                 id='my_checklist',
@@ -61,7 +61,7 @@ app.layout = dbc.Container([
                                 value=['drivhusgasser', 'solinnstråling', 'vulkanisme', 'arealbruk', 'aerosoler'],
                                 # hukker alle av til å begynne med.
                                 inline=True)  # ,width=8)
-                        ], xl=6, lg=8, md=12),
+                        ], xl=6, lg=9, md=12),
                         dbc.Col([
                             dbc.InputGroup(
                                 [dbc.InputGroupText('Enkeltpådriv'),
@@ -147,7 +147,9 @@ def update_graph(paadriv, check_Sum):
 
     fig.update_traces(mode='lines')
     fig.update_yaxes(title=dict(text=r'$W / m^2$'))  # ,showgrid=True, gridwidth=1, gridcolor='white')
-    fig.update_layout(legend=dict(
+    fig.update_layout(
+        height=400,
+        legend=dict(
         orientation="h",
         # yanchor="bottom",
         y=1.15,
@@ -187,13 +189,15 @@ def tegn_temp_graf(driv, my_lambda=-1.3, my_gamma=-0.69):
         fig3 = px.line(data_frame=temp, template=Template)
         fig3.update_traces(mode='lines')
         fig3.update_yaxes(title=dict(text=r'$\Delta T [^{\circ} C]$'))
-        fig3.update_layout(legend=dict(
+        fig3.update_layout(
+            height=400,
+            legend=dict(
             orientation="h",
             # yanchor="bottom",
             y=1.15,
             xanchor="center",
             x=0.5,
-            title="Temperturanomali i havet for:"
+            title="Temperturanomali i havet for:",
         ))
     return fig3
 

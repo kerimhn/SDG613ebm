@@ -19,7 +19,8 @@ import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-template i plotly grafene
 
 # df=pd.read_csv('historical.csv',index_col = 0,sep=',',encoding = "utf-8")
-df = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", 'historical_IPCC6.csv'))
+df = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", 'historical_IPCC6.csv'),
+                 index_col=0, sep=',', encoding="utf-8")
 
 
 df['total'] = df.sum(axis=1)
@@ -50,7 +51,7 @@ app.layout = dbc.Container([
                         dbc.Col([
                             dbc.Label(['Velg strålingspådriv:']),
                         ], className="col-md-2"),
-                        dbc.Col([
+                        dbc.Col({
                             dbc.Checklist(
                                 id='my_checklist',
                                 options=[
@@ -62,8 +63,8 @@ app.layout = dbc.Container([
                                 ],
                                 value=['drivhusgasser', 'solinnstråling', 'vulkanisme', 'arealbruk', 'aerosoler'],
                                 # hukker alle av til å begynne med.
-                                inline=True)  # ,width=8)
-                        ], className="col-md-8")
+                                inline=True),  # ,width=8)
+                        }, className="col-md-8")
                     ])
                 ])
             ], color="primary", inverse=True, class_name="mb-3")
@@ -120,7 +121,7 @@ def update_graph(paadriv):
 )
 def update_side_graph(hov_data, paadriv):  # clk_data, slct_data, paadriv):
     if hov_data is None:
-        dff2 = df[paadriv].loc[1952.0]
+        dff2 = df[paadriv].loc[1952]
         # dff2 = np.abs(dff2.loc[ 1952.0])
         dff2 = dff2.to_frame(name='verdi')
         dff2.reset_index(inplace=True)
@@ -136,7 +137,7 @@ def update_side_graph(hov_data, paadriv):  # clk_data, slct_data, paadriv):
         fig2 = px.bar(dff2, x='index', y='verdi', color='index', title=f'Fordeling av strålingspådriv i {hov_year}',
                       template=Template)
 
-    fig2.update_layout(showlegend=False)
+    fig2.update_layout(height=400,showlegend=False)
     fig2.update_yaxes(title=dict(text=r'$W / m^2$'))
     fig2.update_xaxes(title=dict(text=r''))
 
@@ -155,7 +156,7 @@ def update_total(paadriv):
         liste = ', '.join(liste)
     fig3 = px.line(x=df.index, y=df[paadriv].sum(axis=1), title=f'Total strålingspådriv: {liste}', template=Template)
     fig3.update_yaxes(title=dict(text=r'$W / m^2$'))  # ,showgrid=True, gridwidth=1, gridcolor='white')
-    fig3.update_layout(showlegend=False)
+    fig3.update_layout(height=400, showlegend=False)
     fig3.update_xaxes(title='')
     return fig3
 

@@ -64,14 +64,13 @@ app.layout = dbc.Container([
 
     dbc.Row([
         dbc.Col([
+            dcc.Graph(id='pil_graf', figure={}, mathjax=True)
+            # , className='four columns')#,config={'staticPlot': True})
+        ], lg=7, md=12, sm=12, xs=12, class_name="mt-3"),
+        dbc.Col([
             dcc.Graph(id='intensistet_graf', figure={}, mathjax=True)
             # , className='four columns')#,config={'staticPlot': True})
         ], lg=5, md=12, sm=12, xs=12, class_name="mt-3"),
-
-        dbc.Col([
-            dcc.Graph(id='pil_graf', figure={}, mathjax=True)
-            # , className='four columns')#,config={'staticPlot': True})
-        ], lg=7, md=12, sm=12, xs=12, class_name="mt-3")
     ])
 
 ],fluid='lg')
@@ -113,7 +112,11 @@ def piler(temp, alfa):
                            arrowwidth=skala, startarrowhead=4, startarrowsize=0.3, text="Varmestråling",
                            arrowcolor="red", )
 
-    fig.update_layout(xaxis_range=[0.3, 1.2], yaxis_range=[0, 2], margin_l=0, margin_r=0)
+    fig.update_layout(xaxis_range=[0.3, 1.2],
+                      yaxis_range=[0, 2],
+                      margin_l=0,
+                      margin_r=0,
+                      height=400)
 
     fig.add_hrect(y0=0, y1=0.2, fillcolor="darkolivegreen", opacity=0.5, layer="below", line_width=0)
     fig.update_yaxes(showgrid=False, title=None, showticklabels=False)
@@ -180,9 +183,12 @@ def soyle(temp, alfa):
 
     fig2.update_yaxes(title=dict(text=r'$W / m^2$'))
     fig2.update_xaxes(title=dict(text=r''))
-    fig2.update_layout(title='', xaxis_range=[-0.3, 4.5], yaxis_range=[1.2 * min(grenser), 1.15 * max(grenser)],
+    fig2.update_layout(title='',
+                       xaxis_range=[-0.3, 4.5],
+                       yaxis_range=[1.2 * min(grenser), 1.15 * max(grenser)],
                        legend=dict(orientation="h", y=1.15, xanchor="center", x=0.5,
-                                   title=""))  # , yaxis_range = [0, 2],margin_l=0,margin_r=0)
+                                   title=""),
+                       height=400)  # , yaxis_range = [0, 2],margin_l=0,margin_r=0)
     fig2.update_xaxes(showgrid=False, title=None, showticklabels=False)
 
     return fig2

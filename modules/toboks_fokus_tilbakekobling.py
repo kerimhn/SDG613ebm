@@ -241,7 +241,9 @@ def tegn_temp_graf(driv, check_Laps, check_Water, check_Albedo, check_Clouds, ch
         fig3 = px.line(data_frame=temp, template=Template)
         fig3.update_traces(mode='lines')
         fig3.update_yaxes(title=dict(text=r'$\Delta T [^{\circ} C]$'))
-        fig3.update_layout(legend=dict(
+        fig3.update_layout(
+            height=400,
+            legend=dict(
             orientation="h",
             # yanchor="bottom",
             y=1.15,

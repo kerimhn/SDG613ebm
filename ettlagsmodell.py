@@ -42,7 +42,7 @@ app.layout = dbc.Container([
         dbc.Card([
             dbc.CardBody([
                 html.H4(
-                    "Balanser utstrålinstetthet og innstråltingstetthet:",
+                    "Balanser utstrålingstetthet og innstrålingstetthet:",
                     className="card-title"),  # style={'font-size': '1.2vw'}),
                 dbc.Row([dbc.Col(
                     dbc.Label("Temperatur på bakken:"), width=3),  # style={'font-size': '.95vw'}),
@@ -148,13 +148,13 @@ def piler(temp, temp2, alfa, epsilon):
         fig.add_annotation(ax=0.99, axref='x', ay=1.2, ayref='y',
                            x=0.99, xref='x', y=0.2, yref='y', arrowside='start',
                            arrowwidth=skala, startarrowhead=4, startarrowsize=0.3, arrowcolor="red",
-                           text='Varmestråling<br>absorbet<br>i atm.')
+                           text='Varmestråling<br>absorbert<br>i atm.')
 
     if skala2 > 0.1:
         fig.add_annotation(ax=1.12, axref='x', ay=2.2, ayref='y',
                            x=1.01, xref='x', y=0.2, yref='y', arrowside='start',
                            arrowwidth=skala2, startarrowhead=4, startarrowsize=0.3,
-                           text="Varmeståling<br>mot verdens-<br>rommet", arrowcolor="red", )
+                           text="Varmestråling<br>mot verdens-<br>rommet", arrowcolor="red", )
     if skala3 > 0.1:
         fig.add_annotation(ax=1.35, axref='x', ay=2.2, ayref='y',
                            x=1.35, xref='x', y=0.2, yref='y', arrowside='end+start',

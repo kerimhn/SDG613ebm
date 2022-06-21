@@ -99,7 +99,7 @@ app.layout = dbc.Container([
                 html.H4("Velg perioder for plottet:", className="card-title"),
                 dbc.Row([
 
-                    dbc.Col(dcc.RangeSlider(1750, 2500,
+                    dbc.Col(dcc.RangeSlider(1750, 2300,
                                             marks={
                                                 1750: '1750',
                                                 1800: '1800',
@@ -109,9 +109,6 @@ app.layout = dbc.Container([
                                                 2000: '2000',
                                                 2050: '2050',
                                                 2100: '2100',
-                                                2200: '2200',
-                                                2300: '2300',
-                                                2400: '2400',
                                             },
                                             value=[1850, 2100],
                                             id='slide1'),

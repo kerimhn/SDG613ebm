@@ -1,4 +1,5 @@
 
+
 ###############################
 # Dash-app
 # strålingspådriv til toboksmodell
@@ -51,7 +52,7 @@ app.layout = dbc.Container([
                         dbc.Col([
                             dbc.Label(['Velg strålingspådriv:']),
                         ], className="col-md-2"),
-                        dbc.Col({
+                        dbc.Col([
                             dbc.Checklist(
                                 id='my_checklist',
                                 options=[
@@ -64,7 +65,7 @@ app.layout = dbc.Container([
                                 value=['drivhusgasser', 'solinnstråling', 'vulkanisme', 'arealbruk', 'aerosoler'],
                                 # hukker alle av til å begynne med.
                                 inline=True),  # ,width=8)
-                        }, className="col-md-8")
+                        ], className="col-md-8")
                     ])
                 ])
             ], color="primary", inverse=True, class_name="mb-3")

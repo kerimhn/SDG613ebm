@@ -19,9 +19,7 @@ import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-template i plotly grafene
 
 # df=pd.read_csv('historical.csv',index_col = 0,sep=',',encoding = "utf-8")
-df = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", 'historical_IPCC6.csv'),
-                 index_col=0, sep=',', encoding="utf-8")
-
+df = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data', 'historical_IPCC6.csv'),index_col = 0,sep=',',encoding = "utf-8")
 
 df['total'] = df.sum(axis=1)
 
@@ -51,7 +49,7 @@ app.layout = dbc.Container([
                         dbc.Col([
                             dbc.Label(['Velg strålingspådriv:']),
                         ], className="col-md-2"),
-                        dbc.Col({
+                        dbc.Col([
                             dbc.Checklist(
                                 id='my_checklist',
                                 options=[
@@ -64,7 +62,7 @@ app.layout = dbc.Container([
                                 value=['drivhusgasser', 'solinnstråling', 'vulkanisme', 'arealbruk', 'aerosoler'],
                                 # hukker alle av til å begynne med.
                                 inline=True),  # ,width=8)
-                        }, className="col-md-8")
+                        ], className="col-md-8")
                     ])
                 ])
             ], color="primary", inverse=True, class_name="mb-3")

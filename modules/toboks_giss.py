@@ -19,12 +19,12 @@ import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-template i plotly grafene
 
 # df=pd.read_csv('historical.csv',index_col = 0,sep=',',encoding = "utf-8")
-df = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)),'data','historical_IPCC6.csv'),
+df = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)),'../data','historical_IPCC6.csv'),
                  index_col=0, sep=',', encoding="utf-8")
 
 # df['total']=df.sum(axis=1)
-data =  pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)),'data','graph.csv'), skiprows=1, index_col=0)
-error = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)),'data','totalCI_ERA.csv'), index_col=0)
+data =  pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)),'../data','graph.csv'), skiprows=1, index_col=0)
+error = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)),'../data','totalCI_ERA.csv'), index_col=0)
 data['Max'] = data['No_Smoothing'] + error['ci95']
 data['Min'] = data['No_Smoothing'] - error['ci95']
 

@@ -98,7 +98,7 @@ app.layout = dbc.Container([
                                  dbc.InputGroupText("1986-2005"),
                                  ],
                             )
-                        ], width={"offset": 3}, align="end"),
+                        ],), # width={"offset": 3}, align="end"),
 
                     ])
                 ])

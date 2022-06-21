@@ -19,7 +19,7 @@ import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-template i plotly grafene
 
 
-df = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)),'../data','futureForcing_IPCC6.csv'),
+df = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data', 'futureForcing_IPCC6.csv'),
                  index_col=0, sep=',', encoding="utf-8")
 
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
@@ -201,8 +201,8 @@ lamdba_LR = (-0.5, -0.7, -0.3, 'high')  # from Dessler, 2013; Caldwell et al., 2
 lambda_albedo = (0.35, 0.1, 0.6, 'medium')
 lambda_cloud = (0.42, -0.1, 0.94, 'high')
 
-lambda_sum_min = lambda_planck[1] + lamdba_WV[1] + lamdba_LR[1] + lambda_albedo[1] + lambda_cloud[1]
-lambda_sum_max = lambda_planck[2] + lamdba_WV[2] + lamdba_LR[2] + lambda_albedo[2] + lambda_cloud[2]
+# lambda_sum_min = lambda_planck[1] + lamdba_WV[1] + lamdba_LR[1] + lambda_albedo[1] + lambda_cloud[1]
+# lambda_sum_max = lambda_planck[2] + lamdba_WV[2] + lamdba_LR[2] + lambda_albedo[2] + lambda_cloud[2]
 
 lambda_sum = lambda_planck[0] + lamdba_WV[0] + lamdba_LR[0] + lambda_albedo[0] + lambda_cloud[0]
 
@@ -212,8 +212,8 @@ sum_var = ((lambda_planck[1] - lambda_planck[0]) / 2) ** 2 + ((lamdba_WV[1] - la
 Std = sum_var ** 0.5
 
 
-# lambda_sum_min=lambda_sum-Std
-# lambda_sum_max=lambda_sum+Std
+lambda_sum_min = lambda_sum-Std
+lambda_sum_max = lambda_sum+Std
 
 # Temperaturanomali
 @app.callback(

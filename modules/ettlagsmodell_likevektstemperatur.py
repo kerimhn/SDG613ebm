@@ -107,7 +107,7 @@ def piler(klikk, omega, alfa, epsilon):
     fig.add_annotation(ax=0.7, axref='x', ay=2.2, ayref='y',
                        x=0.7, xref='x', y=0.68, yref='y',
                        arrowwidth=tyk, arrowhead=7, arrowsize=0.3, font=dict(size=16), text="$\\frac{\\Omega}{4}$",
-                       arrowcolor="orange", arrowside='none')
+                       arrowcolor="gold", arrowside='none')
 
     fig.add_annotation(text='$\\frac{(1-\\alpha) \\Omega}{4}$', xref="x", yref="y", x=0.7, y=0.1, showarrow=False,
                        font=dict(size=12))
@@ -116,13 +116,13 @@ def piler(klikk, omega, alfa, epsilon):
         fig.add_annotation(ax=0.7 + alfa * 0.025, axref='x', ay=0.9, ayref='y',
                            x=0.7 + alfa * 0.025, xref='x', y=0.2, yref='y',
                            arrowwidth=tyk * (1 - alfa), startarrowhead=6, arrowhead=4, arrowsize=0.3,
-                           font=dict(size=12), arrowcolor="orange")
+                           font=dict(size=12), arrowcolor="gold")
 
     if alfa > 0.1:
         fig.add_annotation(ax=0.5, axref='x', ay=2.2, ayref='y',
                            x=0.69, xref='x', y=0.60, yref='y', arrowside='start',
                            arrowwidth=alfa * tyk, arrowhead=6, startarrowhead=4, startarrowsize=0.3, font=dict(size=12),
-                           text="$\\frac{\\alpha \\Omega}{4}$", arrowcolor="orange", align='left')
+                           text="$\\frac{\\alpha \\Omega}{4}$", arrowcolor="gold", align='left')
 
     # jord
     if skala > 0.1:

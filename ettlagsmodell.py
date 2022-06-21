@@ -68,12 +68,12 @@ app.layout = dbc.Container([
         dbc.Col([
             dcc.Graph(id='pil_graf', figure={}, mathjax=True)
             # , className='four columns')#,config={'staticPlot': True})
-        ], lg=7, md=12, sm=12, xs=12, class_name="mb-3"),
+        ], lg=7, md=7, sm=12, xs=12, class_name="mb-3"),
 
         dbc.Col([
             dcc.Graph(id='intensistet_graf', figure={}, mathjax=True)
             # , className='four columns')#,config={'staticPlot': True})
-        ], lg=5, md=12, sm=12, xs=12, class_name="mb-3", width={'order': 'last'})
+        ], lg=5, md=5, sm=12, xs=12, class_name="mb-3", width={'order': 'last'})
 
     ]),
 

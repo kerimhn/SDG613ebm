@@ -18,13 +18,12 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-template i plotly grafene
 
-
 df = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data', 'futureForcing_IPCC6.csv'),
                  index_col=0, sep=',', encoding="utf-8")
 
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
 app = Dash(__name__,
-           server=False,
+#           server=False,
            title='Toboksmodell og fremtidsscenarier',
            external_stylesheets=[dbc.themes.FLATLY],
            meta_tags=[{'name': 'viewport',  # skalering for mobil
@@ -110,6 +109,7 @@ app.layout = dbc.Container([
                                                 2050: '2050',
                                                 2100: '2100',
                                                 2200: '2200',
+                                                2300: '2300',
                                             },
                                             value=[1850, 2100],
                                             id='slide1'),
@@ -195,7 +195,7 @@ def update_graph(paadriv, periode):
 lambda_planck = (-3.22, -3.4, -3.0, 'high')
 lamdba_WV = (1.77, 1.57, 1.97, 'high')  # from Zelinka et al., 2020 (one standard deviation)
 lamdba_LR = (-0.5, -0.7, -0.3, 'high')  # from Dessler, 2013; Caldwell et al., 2016; Colman and Hanson,
-                                        # 2017; Zelinka et al., 2020 (one standard deviation)
+# 2017; Zelinka et al., 2020 (one standard deviation)
 lambda_albedo = (0.35, 0.1, 0.6, 'medium')
 lambda_cloud = (0.42, -0.1, 0.94, 'high')
 
@@ -209,9 +209,9 @@ sum_var = ((lambda_planck[1] - lambda_planck[0]) / 2) ** 2 + ((lamdba_WV[1] - la
                   (lambda_cloud[1] - lambda_cloud[0]) / 2) ** 2
 Std = sum_var ** 0.5
 
+lambda_sum_min = lambda_sum - Std
+lambda_sum_max = lambda_sum + Std
 
-lambda_sum_min = lambda_sum-Std
-lambda_sum_max = lambda_sum+Std
 
 # Temperaturanomali
 @app.callback(
@@ -221,6 +221,7 @@ lambda_sum_max = lambda_sum+Std
      Input(component_id='slide1', component_property='value')],
 )
 def update_temperatur(paadriv, check, periode):
+#    global nullnivaa
     dff = df[paadriv]
     nivaa1 = 1750
     nivaa2 = 1750
@@ -238,7 +239,8 @@ def update_temperatur(paadriv, check, periode):
 
     for i in range(len(paadriv)):
         temp[paadriv[i]], To = calculate_temp_anomalies(dff[paadriv[i]].to_numpy(), lambda_sum, gamma)
-        temp[paadriv[i]] = temp[paadriv[i]] - temp[paadriv[i]].loc[nivaa1:nivaa2].mean()
+        nullnivaa = temp[paadriv[i]].loc[nivaa1:nivaa2].mean()
+        temp[paadriv[i]] = temp[paadriv[i]] - nullnivaa
 
     fig = px.line(data_frame=temp, title='Temperaturanomali overflate', template=Template)
     fig.update_yaxes(title=dict(text=r'$\Delta T [^{\circ} C]$'))
@@ -253,11 +255,9 @@ def update_temperatur(paadriv, check, periode):
 
         for i in range(len(paadriv)):
             min_temp[paadriv[i]], To = calculate_temp_anomalies(dff[paadriv[i]].to_numpy(), lambda_sum_min, gamma)
-            min_temp[paadriv[i]] = min_temp[paadriv[i]] - min_temp[paadriv[i]].loc[nivaa1:nivaa2].mean()
-
+            min_temp[paadriv[i]] = min_temp[paadriv[i]] - nullnivaa
             max_temp[paadriv[i]], To = calculate_temp_anomalies(dff[paadriv[i]].to_numpy(), lambda_sum_max, gamma)
-            max_temp[paadriv[i]] = max_temp[paadriv[i]] - max_temp[paadriv[i]].loc[nivaa1:nivaa2].mean()
-
+            max_temp[paadriv[i]] = max_temp[paadriv[i]] - nullnivaa
             fig.add_trace(go.Scatter(x=max_temp.index, y=max_temp[paadriv[i]],
                                      fill='none',
                                      mode='lines',

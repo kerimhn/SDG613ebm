@@ -17,7 +17,7 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-template i plotly grafene
 
-df = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data','historical_IPCC6.csv'),
+df = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data', 'historical_IPCC6.csv'),
                  index_col=0, sep=',', encoding="utf-8")
 
 df['total'] = df.sum(axis=1)
@@ -150,13 +150,13 @@ def update_graph(paadriv, check_Sum):
     fig.update_layout(
         height=400,
         legend=dict(
-        orientation="h",
-        # yanchor="bottom",
-        y=1.15,
-        xanchor="center",
-        x=0.5,
-        title=""
-    ))
+            orientation="h",
+            # yanchor="bottom",
+            y=1.15,
+            xanchor="center",
+            x=0.5,
+            title=""
+        ))
 
     return fig
 
@@ -192,13 +192,13 @@ def tegn_temp_graf(driv, my_lambda=-1.3, my_gamma=-0.69):
         fig3.update_layout(
             height=400,
             legend=dict(
-            orientation="h",
-            # yanchor="bottom",
-            y=1.15,
-            xanchor="center",
-            x=0.5,
-            title="Temperturanomali i havet for:",
-        ))
+                orientation="h",
+                # yanchor="bottom",
+                y=1.15,
+                xanchor="center",
+                x=0.5,
+                title="Temperturanomali i havet for:",
+            ))
     return fig3
 
 

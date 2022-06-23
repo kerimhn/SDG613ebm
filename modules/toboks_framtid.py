@@ -23,7 +23,7 @@ df = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../da
 
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
 app = Dash(__name__,
-#           server=False,
+           server=False,
            title='Toboksmodell og fremtidsscenarier',
            external_stylesheets=[dbc.themes.FLATLY],
            meta_tags=[{'name': 'viewport',  # skalering for mobil

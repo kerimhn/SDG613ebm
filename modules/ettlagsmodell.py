@@ -80,11 +80,6 @@ app.layout = dbc.Container([
     dbc.Row([
         dbc.Card([
             dbc.CardBody([
-#                html.H4(
-#                    "Reguler andelen av solyset som reflekteres (albedo) og hvor effektiv atmosfæren absorberer og "
-#                    "sender ut langbølget stråling (emissivitet)",
-#                    # style={'font-size': '1.2vw'},
-#                    className="card-title"),
                 dbc.Row([dbc.Col(
                     dbc.Label("Albedo"), width=2),  # style={'font-size': '.95vw'}),
 
@@ -104,7 +99,7 @@ app.layout = dbc.Container([
         ], color="primary", inverse=True, class_name="mb-3")
     ])
 
-],fluid='lg')
+], fluid='lg')
 
 
 # _________________________________________________________________________________________________________

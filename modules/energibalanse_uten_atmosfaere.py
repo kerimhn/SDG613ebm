@@ -22,7 +22,7 @@ Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
 
 app = Dash(__name__,
            server=False,
-           title='Model uten atmosfære',
+           title='Modell uten atmosfære',
            external_stylesheets=[dbc.themes.FLATLY],
            meta_tags=[{'name': 'viewport',  # skalering for mobil
                        'content': 'width=device-width, initial-scale=1.0'}])

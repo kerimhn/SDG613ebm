@@ -17,7 +17,7 @@ from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-tem
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
 app = Dash(__name__,
            server=False,
-           title='Planck - kurve',
+           title='Planckkurve',
            external_stylesheets=[dbc.themes.FLATLY],
            meta_tags=[{'name': 'viewport',  # skalering for mobil
                        'content': 'width=device-width, initial-scale=1.0'}])

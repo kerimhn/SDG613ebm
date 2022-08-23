@@ -34,7 +34,7 @@ gamma = -0.69  # [Wm-2K-1] - effektivitet for opptak av varme i dyphav fra Dufre
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
 app = Dash(__name__,
            server=False,
-           title='Målt + modelert temperaturanomali',
+           title='Målt + modellert temperaturanomali',
            external_stylesheets=[dbc.themes.FLATLY],
            meta_tags=[{'name': 'viewport',  # skalering for mobil
                        'content': 'width=device-width, initial-scale=1.0'}])

@@ -52,9 +52,9 @@ app.layout = dbc.Container([
                                 id='my_checklist',
                                 options=[
                                     {'label': 'SSP1', 'value': 'SSP1-2.6'},
-                                    {'label': 'SSP2?', 'value': 'SSP2', "disabled": True},
-                                    {'label': 'SSP3?', 'value': 'SSP3', "disabled": True},
-                                    {'label': 'SSP4?', 'value': 'SSP4', "disabled": True},
+                                    {'label': 'SSP2', 'value': 'SSP2-4.5', "disabled": False},
+                                    {'label': 'SSP3', 'value': 'SSP3-7.0', "disabled": False},
+                                    {'label': 'SSP4', 'value': 'SSP4-6.0', "disabled": False},
                                     {'label': 'SSP5', 'value': 'SSP5-8.5'},
                                 ],
                                 value=['SSP1-2.6'],  # hukker alle av til å begynne med.
